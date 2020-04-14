@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+	li1{
+		background-color:yellow;
+	
+	}	
+</style>
 <meta charset="UTF-8">
 <link href="css/Login.css" rel="stylesheet" type="text/css" />
 <title>基于JQuery的登录</title>
 <script type="text/javascript" src = "jQueryTool/jquery-3.5.0.js"></script>
+
 <script>	
 	$("document").ready(init);
 	
@@ -61,16 +68,16 @@
 		var jud ;
 		var $errMessage = $(".errMessage");//获得所有错误信息标签
 		$errMessage.each(function(i,e){
-			jud = ($(this).attr("style") == "display: none;");
-			return ($(this).attr("style") == "display: none;")
+			jud = ($(this).attr("style") == "display: none;");//如果设置了style为display: none;则说明现在输入正确
+			return ($(this).attr("style") == "display: none;")//如果输入错误返回false，并停止继续遍历，直接不跳转
 		});
 		return jud;
 	}
 </script>
 </head>
 <body>
-	<div id="login_input">
-		<form action="jquerydemo.html">
+	<div id="login_input" >
+		<form action="jquerydemo.html" method="post">
 			<!-- id值用于jQuery选择器进行选择，name值后期动态页面时取得  -->
 			<input type = "text" id="userName" name="userName"/>
 				<!-- 用户名检验失败时显示 -->

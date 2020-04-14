@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>juqery 知识点复习</title>
+<script type="text/javascript" src = "jQueryTool/jquery-3.5.0.js"></script>
+<style type="text/css">
+	ul{
+		background-color:yellow;
+	
+	}	
+</style>
+<script type="text/javascript">	
+	$("document").ready(init);
+	
+	function init(){
+		//对h1进行一个鼠标移入和鼠标移出事件的绑定,使用hover,鼠标悬浮时背景变红、移开变白
+		//也可通过对h1标签绑定mouseover和mouseout事件来实现
+		$("h1").hover(function(){
+			$("h1").css("background-color","red");
+		},function(){
+			$("h1").css("background-color","white");
+		});
+		
+		//在h1外添加一个消失按钮、一个显示按钮
+		$("h1").before($("<input type='button' value='h1_hide'/>"));
+		$("h1").before($("<input type='button' value='h1_show'/>"))
+		$("[value=h1_hide]").click(function(){
+			$("h1").hide(300,function(){//3s后消失，消失之后调用回调函数
+				$("body").append($("<p style='font-size:20px' id='h1_hide'>h1消失</p>"))
+			})
+		})
+		$("[value=h1_show]").click(function(){
+			$("h1").show(300,function(){
+				$("p#h1_hide").remove();
+			})
+		})
+		//使用bind进行事件绑定，点击ul后绑定一个鼠标移出事件
+		$("ul").bind("click",function(){
+			$("ul").mouseout(function(){
+				//鼠标移出，li字体变色
+				$("li").css("color","red");
+			});
+		});
+		//当替换后，h3将h2替换后，h3中的事件还保留，但是h2将h3替换后，h2中事件没有了
+		var $h2 = $("h2");
+		var $h3 = $("<h3>i am not blue</h3>");
+		$h3.mouseover(function(){
+			$h3.css("background-color","red");
+		});
+		$h3.mouseout(function(){
+			$h3.css("background-color","white");
+		});
+		$h2.mouseover(function(){
+			$h2.css("background-color","blue");
+		});
+		$h2.mouseout(function(){
+			$h2.css("background-color","white");
+		});
+		$h2.click(function(){
+			$h2.replaceWith($h3);
+		});
+		$h3.click(function(){
+			$h3.replaceWith($h2);
+		});
+		
+		var offset = $("#spot").offset();
+		$("#position").click(function(){
+			//对body没有用，对html有用，即使使用css将html和body的position属性改成一样的也对body没用
+			$("html").scrollTop(offset.top);
+		});
+	}
+
+</script>
+</head>
+<body>
+	<button id="position">定位</button>
+	<h1>jQuery 复习</h1>
+	<ul class = "ulclass" style="font-size:30px">
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<l1 id="spot" style="color:red font-size:100px" >滚动条定位点</l1>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+		<li id="li1">aaa</li>
+		<li id="li2">bbb</li>
+		<li>ccc</li>
+	</ul>
+	<h2 style="background-color:blue;">
+		blue mean that i feel blue;
+	</h2>
+</body>
+</html>
