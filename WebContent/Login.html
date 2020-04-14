@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="css/Login.css" rel="stylesheet" type="text/css" />
+<title>基于JQuery的登录</title>
+<script type="text/javascript" src = "jQueryTool/jquery-3.5.0.js"></script>
+<script>	
+	$("document").ready(init);
+	
+	function init(){
+		$("#userName").blur(userNameLostMouse); //为用户名框添加失去焦点的事件
+		$("#userName").focus(userNameGetMouse);	//为用户名框添加获得焦点的事件
+		$("#userPwd").blur(userPwdLostMouse); //为密码框添加失去焦点的事件
+		$("#userPwd").focus(userPwdGetMouse);	//为密码框添加失去焦点的事件
+		$("#submit").click(submit);	
+		
+	}
+	function userNameLostMouse(){
+		//userName的正则，只能有数字字母，必须大于八位，小于16位
+		var userNameRegExp = /^[0-9a-zA-Z]{8,16}$/;
+		var userName = $("#userName").val();
+		if(userName != ""){
+		//userName不为空进行判断	
+			if(!userNameRegExp.test(userName)){
+				$("#userNameInputErr").css("display","contents");
+			}
+		}else {
+			$("#userNameNullErr").css("display","contents");
+		}
+	
+	}
+	function userNameGetMouse(){
+		//获得焦点时隐藏错误信息
+		$("#userNameInputErr").css("display","none");
+		$("#userNameNullErr").css("display","none");
+	}
+	
+	function userPwdLostMouse(){
+		//userpwd的正则，只能有数字字母，必须大于八位，小于16位
+		var userPwdRegExp = /^[0-9a-zA-Z]{8,16}$/ ;
+		var userPwd = $("#userPwd").val();
+		if(userPwd != ""){
+		//userName不为空进行判断	
+			if(!userPwdRegExp.test(userPwd)){
+				$("#userPwdInputErr").css("display","contents");
+			}
+		}else {
+			$("#userPwdNullErr").css("display","contents");
+		}
+	
+	}
+	function userPwdGetMouse(){
+		//获得焦点时隐藏错误信息
+		$("#userPwdInputErr").css("display","none");
+		$("#userPwdNullErr").css("display","none");
+	}
+	
+	//点击登录进行触发
+	function submit(){
+		var jud ;
+		var $errMessage = $(".errMessage");//获得所有错误信息标签
+		$errMessage.each(function(i,e){
+			jud = ($(this).attr("style") == "display: none;");
+			return ($(this).attr("style") == "display: none;")
+		});
+		return jud;
+	}
+</script>
+</head>
+<body>
+	<div id="login_input">
+		<form action="jquerydemo.html">
+			<!-- id值用于jQuery选择器进行选择，name值后期动态页面时取得  -->
+			<input type = "text" id="userName" name="userName"/>
+				<!-- 用户名检验失败时显示 -->
+				<p id="userNameInputErr" class="errMessage">用户名错误</p>
+				<p id="userNameNullErr" class="errMessage" >用户名不能为空</p><br/>
+			<input type = "password" id="userPwd" name="userPwd"/>
+				<!-- 密码验证失败时显示 -->
+				<p class="errMessage" id="userPwdInputErr" >密码错误</p>
+				<p class="errMessage" id="userPwdNullErr" >密码不能为空</p><br/>
+			<input type = "submit" id="submit"  />
+		</form>
+	</div>
+</body>
+</html>
